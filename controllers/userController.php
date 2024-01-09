@@ -1,42 +1,73 @@
 <?php
-include '../models/DAO/userDAO.php';
+// include '../models/DAO/userDAO.php';
 // include '../controllers/userController.php';
 
 
-$userController = new UserController(new UserDAO());
-$userController->addUser();
+// $userController = new UserController(new UserDAO());
+// $userController->addUser();
 
 class UserController {
-    private $userDAO;
 
-    public function __construct($userDAO) {
-        $this->userDAO = $userDAO;
-    }
-
-    // public function getUsers() {
-    //    return $this->userDAO->getAllUsers();
-    // //    include '../views/userView.php';
-    // }
     public function addUser(){
 
-        if (isset($_POST['submit'])){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $name = $_POST['name'];
             $email = $_POST['email'];
             $password = $_POST['password'];
-    
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $addUser = new User($name, $email, $hashedPassword);
-            $result = $this->userDAO->regester($email ,$name, $password);
+            $addUser = new User(0,$name, $email, $password, null);
+            
+            $result = new UserDAO();
+            $result->regester($addUser);
+            
     
             if ($result) {
-                echo 'User successfully added to the database.';
+                    header('location: index.php?action=regester');                
             } else {
                 echo 'Error adding user to the database.';
             }
         }
-        // include '../views/userView.php';
+        include 'views\userView.php';
     }
-    
+
+    public function login() {
+        // echo 'chi lkjkjkjkjkjkjkjkjkjkjkjkj';
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $user = new User('', '', $email, $password, null);
+            $userDAO = new UserDAO();
+            $user = $userDAO->login($user);
+
+            if (!empty($user)) {
+                if ($user['role'] == 0) {
+                    session_start();
+                    $userId = $user['user_id'];
+                    $_SESSION['user_id'] = $userId;
+                    header('location: views\categoryView.php');
+                } else {
+                    header('location: views\Autuer.php');
+                }
+            } else {
+                echo '<p>it\'s empty</p>';
+            }
+            
+
+            
+        // Include your login view file
+        include "views\login.php";
+    }
+ 
+}
+    public function login_form() {
+         include "views\login.php";
+
+        }
+    public function regester_form() {
+            include "views\userView.php";
+   
+       }
+
 }
 ?>

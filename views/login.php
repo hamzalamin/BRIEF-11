@@ -1,27 +1,18 @@
 <?php
 include 'head.php';
-// include 'navBar.php';
-// include '../controllers/userController.php';
 ?>
+
 
 <body class="d-flex align-items-center justify-content-center vh-100">
 
     <div class="col-md-7 col-lg-8 rounded p-4 shadow" style="max-width: 400px; width: 100%;">
-        <h4 class="text-center">SIGN IN</h4>
-        <form class="needs-validation" method="post" action="index.php?action=regester" novalidate>
+        <h4 class="text-center">LOG IN</h4>
+        <form class="needs-validation" method="post" action="index.php?action=admin">
             <div class="mb-3">
                 <label for="signInEmail" class="form-label">Email</label>
                 <input type="email" class="form-control" id="signInEmail" name="email" placeholder="Your Email" required>
                 <div class="invalid-feedback">
                     Please enter a valid email.
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label for="signInName" class="form-label">Name</label>
-                <input type="text" class="form-control" id="signInName" name="name" placeholder="Your name" required>
-                <div class="invalid-feedback">
-                    Please enter a valid name.
                 </div>
             </div>
 
@@ -35,13 +26,14 @@ include 'head.php';
 
             <div class="row g-3">
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-lg w-100" name="submit" type="submit">Sign In</button>
+                    <button class="btn btn-primary btn-lg w-100" name="submit" type="submit">Sign </button>
                 </div>
+                </form>
                 <div class="col-md-6">
-                    <p class="text-center">you have an account <a href="index.php?action=login">log in</a></p>
+                    <p class="text-center">Create an account <a href="index.php?action=rege">Sign Up</a></p>
                 </div>
             </div>
-        </form>
+       
     </div>
 
 </body>
