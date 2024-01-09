@@ -1,12 +1,15 @@
 <?php
 include_once 'configuration\conection.php';
 include 'controllers\userController.php';
+include 'controllers\categoryController.php';
 include 'controllers\tagController.php';
 include 'models\DAO\userDAO.php';
 include 'models\DAO\tagDAO.php';
+include 'models\DAO\categoryDAO.php';
 
 $controllerFunctions = new UserController();
 $tagController = new tagController();
+$categoryController = new categoryController();
 
 
 if (isset($_GET['action'])){
@@ -36,6 +39,13 @@ if (isset($_GET['action'])){
         case 'updateTag':
             $tagController->updateTag();
         break;
+        case 'categoryManagment':
+            $categoryController->desplayAllCategorys();
+        break;
+        case 'insertCategory':
+            $categoryController->addCategory();
+        break;
+
     }
 
 }

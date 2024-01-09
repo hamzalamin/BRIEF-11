@@ -1,6 +1,5 @@
 <?php
-// include __DIR__ . '/configuration/conection.php';
-include '../../configuration/conection.php';
+
 class category{
     private $category_id;
     private $category_name;
