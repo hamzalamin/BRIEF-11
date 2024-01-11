@@ -2,15 +2,15 @@
 
 class User {
     private $user_id;
-    private $name;
+    private $username ;
     private $email;
     private $password;
     private $role;
 
-    public function __construct($user_id, $name, $email, $password, $role)
+    public function __construct($user_id, $username , $email, $password, $role)
     {
         $this->user_id = $user_id;
-        $this->name = $name;
+        $this->username  = $username ;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
@@ -21,7 +21,7 @@ class User {
     }
 
     public function getName(){
-        return $this->name;
+        return $this->username;
     }
 
     public function getEmail(){

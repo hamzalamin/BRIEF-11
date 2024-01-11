@@ -22,7 +22,7 @@ include 'navBar.php';
             <div class="list-group">
                     <a href="../index.php?action=tagManagment" class="list-group-item list-group-item-action">Tags Managment</a>
                     <a href="../index.php?action=categoryManagment" class="list-group-item list-group-item-action">Categorys Managment</a>
-                    <a href="#" class="list-group-item list-group-item-action">Wikis Managment</a>
+                    <a href="../index.php?action=wikisManagment" class="list-group-item list-group-item-action">Wikis Managment</a>
                     <!-- Add more categories -->
                 </div>
             <!-- Main Content Area -->

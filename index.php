@@ -2,14 +2,17 @@
 include_once 'configuration\conection.php';
 include 'controllers\userController.php';
 include 'controllers\categoryController.php';
+include 'controllers\wikiController.php';
 include 'controllers\tagController.php';
 include 'models\DAO\userDAO.php';
 include 'models\DAO\tagDAO.php';
 include 'models\DAO\categoryDAO.php';
+include 'models\DAO\wikiDAO.php'; 
 
 $controllerFunctions = new UserController();
 $tagController = new tagController();
 $categoryController = new categoryController();
+$wikiController = new wikiController();
 
 
 if (isset($_GET['action'])){
@@ -45,9 +48,23 @@ if (isset($_GET['action'])){
         case 'insertCategory':
             $categoryController->addCategory();
         break;
+        case 'getCategoryToUpdate':
+            $categoryController->getCatygorysIdController();
+        break;
+        case 'updateCategory':
+            $categoryController->updateCategoryById();
+        break;
+        case 'hideWiki':
+            $wikiController->HideWiki();
+        break;
+        case 'wikisManagment':
+            $wikiController->desplayAllwikis();
+        break;
 
     }
 
+}else {
+        include 'views\homeView.php';    
 }
 
 

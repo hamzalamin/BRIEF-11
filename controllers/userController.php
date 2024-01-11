@@ -11,7 +11,7 @@ class UserController {
     public function addUser(){
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $name = $_POST['name'];
+            $name = $_POST['username '];
             $email = $_POST['email'];
             $password = $_POST['password'];
 

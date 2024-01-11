@@ -26,4 +26,35 @@ class categoryController{
             }
         }
     }
+
+    public function getCatygorysIdController(){
+        $id = $_GET['id'];
+
+        $result = new categoryDAO();
+        $categoryReturn = $result->getCategoryById($id);
+
+        $categoryId = $categoryReturn['category_id'];
+        $categoryName = $categoryReturn['category_name'];
+        $categoryDate = $categoryReturn['category_date'];
+
+        include 'views\updateCtaegory.php';
+
+        
+    }
+
+    public function updateCategoryById(){
+        if (isset($_POST['category_id'])) {
+            $categoryId = $_POST['category_id'];
+            $categoryName = $_POST['category_name'];
+            $categoryDate = $_POST['category_date'];
+
+            $catys = new category($categoryId, $categoryName, $categoryDate);
+
+            $result = new categoryDAO();
+            $result->updateCategory($catys);
+
+            header('location: index.php?action=categoryManagment');
+
+        }
+    }
 }

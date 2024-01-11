@@ -1,4 +1,5 @@
 <?php
+// include '../../configuration/conection.php';
 include 'models\userModel.php';
 class UserDAO {
     private $db;
@@ -6,6 +7,18 @@ class UserDAO {
     public function __construct()
     {
         $this->db = DataBaseConection::getInstance()->getConnection();
+    }
+
+    public function getuserbyid($id){
+        $query = "SELECT * FROM users where user_id =$id";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+            $result = new User($userData['user_id'], $userData['username'], $userData['email'], $userData['password'], $userData['role']);
+           
+        return $result;
+
     }
 
     public function getAllUsers()
@@ -16,20 +29,20 @@ class UserDAO {
         $userData = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $users = array();
         foreach ($userData as $user) {
-            $result = new User($user['user_id'], $user['name'], $user['email'], $user['password'], $user['role']);
+            $result = new User($user['user_id'], $user['username '], $user['email'], $user['password'], $user['role']);
             $users[] = $result;
         }
         return $users;
     }
     public function regester($user) {
-        $query = "INSERT INTO users (email, name, password) VALUES (:email, :name, :password)";
+        $query = "INSERT INTO users (email, username , password) VALUES (:email, :username, :password)";
         $stmt = $this->db->prepare($query);
         $email = $user->getEmail();
-        $name = $user->getName();
+        $username  = $user->getName();
         $password = $user->getPassword();
         // Bind parameters
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':username', $username);
         $stmt->bindParam(':password', $password);
     
         // Execute the query
@@ -53,4 +66,5 @@ class UserDAO {
 
     
 }
+
  

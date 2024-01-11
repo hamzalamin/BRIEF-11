@@ -57,13 +57,14 @@ include 'navBar.php';
         </thead>
         <tbody>
 
-            <?php foreach ($categoeyReturn as $Category) : ?>
+            <?php foreach ($categoeyReturn as $Category) :?>
                 <tr>
+                    
                     <td><?= $Category->getCategoryId(); ?></td>
                     <td><?= $Category->getCategoryName(); ?></td>
                     <td><?= $Category->getCategoryDate(); ?></td>
                     <td><a href=""><button class="btn btn-danger"  name="submit" type="submit">Delet</button></a>
-                    <a><button class="btn btn-success" name="submit" type="submit">Edit</button></a></td>
+                    <a href="index.php?action=getCategoryToUpdate&id=<?= $Category->getCategoryId(); ?> "><button class="btn btn-success" name="submit" type="submit">Edit</button></a></td>
                 </tr>
             <?php endforeach; ?>
 

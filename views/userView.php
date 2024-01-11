@@ -19,7 +19,7 @@ include 'head.php';
 
             <div class="mb-3">
                 <label for="signInName" class="form-label">Name</label>
-                <input type="text" class="form-control" id="signInName" name="name" placeholder="Your name" required>
+                <input type="text" class="form-control" id="signInName" name="username" placeholder="Your name" required>
                 <div class="invalid-feedback">
                     Please enter a valid name.
                 </div>

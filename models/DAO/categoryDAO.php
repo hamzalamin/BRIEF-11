@@ -35,6 +35,29 @@ class categoryDAO{
 
 
     }
+    public function getCategoryById($id){
+        $query = "SELECT * FROM category WHERE category_id = $id";
+        $stmt = $this->db->query($query);
+        $stmt->execute();
+        $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $categoryData;
+    }
+
+    
+    public function updateCategory($caty){
+        $query = "UPDATE category SET category_name = :categoryName , category_date = :categoryDate WHERE category_id = :categoryId";
+        $stmt = $this->db->prepare($query);
+        
+        $id = $caty->getCategoryId();
+        $name = $caty->getCategoryName();
+        $date = $caty->getCategoryDate();
+    
+        $stmt->bindParam(':categoryId', $id);
+        $stmt->bindParam(':categoryName', $name);
+        $stmt->bindParam(':categoryDate', $date);
+    
+        $stmt->execute();
+    }
     
 }
 // $categoryController = new categoryDAO();
