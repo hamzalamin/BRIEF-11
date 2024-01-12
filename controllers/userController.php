@@ -5,7 +5,7 @@
 
 // $userController = new UserController(new UserDAO());
 // $userController->addUser();
-
+session_start();
 class UserController {
 
     public function addUser(){
@@ -27,7 +27,7 @@ class UserController {
                 echo 'Error adding user to the database.';
             }
         }
-        include 'views\userView.php';
+        include 'views\homeView.php';
     }
 
     public function login() {
@@ -43,16 +43,13 @@ class UserController {
             if (!empty($user)) {
                 if ($user['role'] == 0) {
                     session_start();
-                    $userId = $user['user_id'];
-                    $_SESSION['user_id'] = $userId;
-                    header('location: views\categoryView.php');
+                    // $userId = $user['user_id'];
+                    $_SESSION['user'] = $user;
+                    header('location: index.php?action=autourWikissPage');
                 } else {
-                    header('location: views\Autuer.php');
+                    header('location: index.php?action=dashboard_form_');
                 }
-            } else {
-                echo '<p>it\'s empty</p>';
-            }
-            
+            } 
 
             
         // Include your login view file
@@ -60,10 +57,16 @@ class UserController {
     }
  
 }
+
     public function login_form() {
          include "views\login.php";
 
         }
+    public function dashboard_form() {
+            include "views\Autuer.php";
+   
+        }
+   
     public function regester_form() {
             include "views\userView.php";
    

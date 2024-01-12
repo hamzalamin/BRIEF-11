@@ -7,7 +7,11 @@ class categoryController{
 
         include 'views\categoryManagment.php';
     }
-
+    public function desplayAllCategorysforSelecy(){
+        $categoryDAO = new categoryDAO();
+        $categoeyReturn = $categoryDAO->getAllCategorys();
+        return $categoeyReturn;
+    }
     public function addCategory(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $id = $_POST['id'];

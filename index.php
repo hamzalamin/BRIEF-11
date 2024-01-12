@@ -1,4 +1,5 @@
 <?php
+
 include_once 'configuration\conection.php';
 include 'controllers\userController.php';
 include 'controllers\categoryController.php';
@@ -14,57 +15,79 @@ $tagController = new tagController();
 $categoryController = new categoryController();
 $wikiController = new wikiController();
 
-
 if (isset($_GET['action'])){
     $action = $_GET['action'];
     switch($action){
         case 'rege':
             $controllerFunctions->regester_form();
-        break;
+            break;
         case 'regester':
-                $controllerFunctions->addUser();
+            $controllerFunctions->addUser();
             break;
         case 'login':
             $controllerFunctions->login_form();
-        break;
+            break;
         case 'admin':
             $controllerFunctions->login();
-        break;
+            break;
+        case 'dashboard_form_':
+            $controllerFunctions->dashboard_form();
+            break;
         case 'tagManagment':
             $tagController->desplayAllTags();
-        break;
+            break;
         case 'insertTag':
             $tagController->AddTag();
-        break;
+            break;
         case 'gettagToUpdate':
             $tagController->getTagDataById();
-        break;
+            break;
         case 'updateTag':
             $tagController->updateTag();
-        break;
+            break;
         case 'categoryManagment':
             $categoryController->desplayAllCategorys();
-        break;
+            break;
         case 'insertCategory':
             $categoryController->addCategory();
-        break;
+            break;
         case 'getCategoryToUpdate':
             $categoryController->getCatygorysIdController();
-        break;
+            break;
         case 'updateCategory':
             $categoryController->updateCategoryById();
-        break;
+            break;
         case 'hideWiki':
             $wikiController->HideWiki();
-        break;
+            break;
         case 'wikisManagment':
             $wikiController->desplayAllwikis();
+            break;
+        case 'homeView.php':
+            $wikisReturn = $wikiController->desplayTreeWikis();
+            include 'views\homeView.php';
+
+            break;
+        case 'autourWikissPage':
+            // session_start();
+            $var = $_SESSION['user'];
+            $userid = $var['user_id'];
+            $tags = $tagController->desplayAllTagsforselect();
+            $categoryss = $categoryController->desplayAllCategorysforSelecy();
+            $userWikis = $wikiController->getWikisOfAuteur();
+            
+            include "views\auteurAddWikis.php";
         break;
-
+        
+        case 'insertwiki':
+            $wikiController->add_wiki();
+        break;
+        default:
+            break;
     }
+} else {
+    $wikisReturn = $wikiController->desplayTreeWikis();
 
-}else {
-        include 'views\homeView.php';    
+    include 'views\homeView.php';
+
 }
-
-

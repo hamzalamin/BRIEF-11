@@ -1,6 +1,8 @@
 <?php
 // include '../../configuration/conection.php';
 include 'models\userModel.php';
+// include '../userModel.php';
+// include  'models\wikiModel.php';
 class UserDAO {
     private $db;
 
@@ -10,12 +12,12 @@ class UserDAO {
     }
 
     public function getuserbyid($id){
-        $query = "SELECT * FROM users where user_id =$id";
+        $query = "SELECT * FROM users where user_id = $id";
         $stmt = $this->db->query($query);
         $stmt->execute();
         $userData = $stmt->fetch(PDO::FETCH_ASSOC);
         
-            $result = new User($userData['user_id'], $userData['username'], $userData['email'], $userData['password'], $userData['role']);
+        $result = new User($userData['user_id'], $userData['username'], $userData['email'], $userData['password'], $userData['role']);
            
         return $result;
 
@@ -63,6 +65,8 @@ class UserDAO {
        
         return $userData;
     }
+
+    
 
     
 }

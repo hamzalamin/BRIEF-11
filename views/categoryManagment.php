@@ -39,35 +39,33 @@ include 'navBar.php';
 <!-- Rest of your HTML code -->
 
 <!-- Bootstrap JS and Popper.js -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+<div class="container">
 <div class="container">
     <h2>All tags</h2>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Category ID</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Category Date</th>
-                <th scope="col">button</th>
+    <div class="row">
 
-            </tr>
-        </thead>
-        <tbody>
+        <?php foreach ($categoeyReturn as $Category) :?>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $Category->getCategoryName(); ?></h5>
+                        <p class="card-text">ID: <?= $Category->getCategoryId(); ?></p>
+                        <p class="card-text">Date: <?= $Category->getCategoryDate(); ?></p>
+                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="index.php?action=getCategoryToUpdate&id=<?= $Category->getCategoryId(); ?>" class="btn btn-success">Edit</a>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
 
-            <?php foreach ($categoeyReturn as $Category) :?>
-                <tr>
-                    
-                    <td><?= $Category->getCategoryId(); ?></td>
-                    <td><?= $Category->getCategoryName(); ?></td>
-                    <td><?= $Category->getCategoryDate(); ?></td>
-                    <td><a href=""><button class="btn btn-danger"  name="submit" type="submit">Delet</button></a>
-                    <a href="index.php?action=getCategoryToUpdate&id=<?= $Category->getCategoryId(); ?> "><button class="btn btn-success" name="submit" type="submit">Edit</button></a></td>
-                </tr>
-            <?php endforeach; ?>
-
-        </tbody>
-    </table>
+    </div>
 </div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -3,30 +3,32 @@ include 'head.php';
 include 'navBar.php';
 ?>
 
+<section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-7 col-lg-8 rounded p-4 shadow" style="max-width: 600px; width: 100%;">
+                    <h2 class="text-uppercase text-center mb-5">Your Dashboard</h2>
 
+                    <!-- Your dashboard content goes here -->
+                    <div class="mb-4">
+                        <!-- Example: Display user information, charts, or any dashboard elements -->
+                        <p>Welcome to your dashboard! You can manage your application here.</p>
+                    </div>
 
+                    <!-- List of Links -->
+                    <div class="list-group mb-4">
+                        <a href="index.php?action=tagManagment" class="list-group-item list-group-item-action">Tags Management</a>
+                        <a href="index.php?action=categoryManagment" class="list-group-item list-group-item-action">Categories Management</a>
+                        <a href="index.php?action=wikisManagment" class="list-group-item list-group-item-action">Wikis Management</a>
+                        <!-- Add more categories -->
+                    </div>
 
-
-    <!-- Main Content -->
-    <div class="container mt-4">
-          
-            <!-- Sidebar -->
-            <div class="col-md-5">
-            <!-- <div class="col-md-9"> -->
-                <h2>Welcome in Your Dashboard</h2>
-                <p>You can manage your Application </p>
-                <!-- Add your content here -->
-            
-               
-            </div>
-            <div class="list-group">
-                    <a href="../index.php?action=tagManagment" class="list-group-item list-group-item-action">Tags Managment</a>
-                    <a href="../index.php?action=categoryManagment" class="list-group-item list-group-item-action">Categorys Managment</a>
-                    <a href="../index.php?action=wikisManagment" class="list-group-item list-group-item-action">Wikis Managment</a>
-                    <!-- Add more categories -->
+                    <!-- Logout button -->
+                    <div class="text-center">
+                    </div>
                 </div>
-            <!-- Main Content Area -->
-            
+            </div>
         </div>
     </div>
-
+</section>

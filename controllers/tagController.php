@@ -8,6 +8,13 @@ class tagController {
         // print_r($tagReturn);
         include 'views/tagManagmentView.php';
     }
+    public function desplayAllTagsforselect(){
+        $tagDAO = new tagDAO();
+        $tagReturn = $tagDAO->getAllTags();
+        // print_r($tagReturn);
+        return $tagReturn;
+    }
+
 
 
 

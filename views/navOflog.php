@@ -22,10 +22,10 @@
 
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="index.php?action=homeView.php">Log Out <span class="sr-only"></span></a>
+            <a class="nav-link" href="index.php?action=login">Log In <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php?action=dashboard_form_">Dashboard</a>
+                <a class="nav-link" href="#">About</a>
             </li>
             <!-- Add more navigation items as needed -->
         </ul>
