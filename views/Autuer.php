@@ -1,6 +1,6 @@
 <?php
 include 'head.php';
-include 'navBar.php';
+include 'views\navBarOfAdmin.php';
 ?>
 
 <section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
@@ -21,6 +21,8 @@ include 'navBar.php';
                         <a href="index.php?action=tagManagment" class="list-group-item list-group-item-action">Tags Management</a>
                         <a href="index.php?action=categoryManagment" class="list-group-item list-group-item-action">Categories Management</a>
                         <a href="index.php?action=wikisManagment" class="list-group-item list-group-item-action">Wikis Management</a>
+                        <a href="index.php?action=statistique" class="list-group-item list-group-item-action">statistique</a>
+
                         <!-- Add more categories -->
                     </div>
 

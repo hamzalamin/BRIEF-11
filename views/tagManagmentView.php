@@ -1,8 +1,18 @@
 <?php
 include 'head.php';
-include 'navBar.php';
+include 'views\navBarOfAdmin.php';
 ?>
+<style>
+    .card {
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 
+    .card:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+</style>
 <button class="btn btn-primary mx-5 mt-3 mb-5" data-toggle="modal" data-target="#addFormModal">Add Tag</button>
 
 <!-- Add Form Modal -->

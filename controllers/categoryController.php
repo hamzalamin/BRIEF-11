@@ -61,4 +61,13 @@ class categoryController{
 
         }
     }
+
+
+    public function desplayTreeWikis() {
+        $categoryDAO = new categoryDAO();
+        return $categorysReturn = $categoryDAO->lastTreeCategorys();
+        // var_dump($wikisReturn);
+
+        // include 'views\wikiManagment.php';
+    }
 }

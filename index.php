@@ -65,8 +65,11 @@ if (isset($_GET['action'])){
             break;
         case 'homeView.php':
             $wikisReturn = $wikiController->desplayTreeWikis();
+            $categoriesReturn = $categoryController->desplayTreeWikis();
             include 'views\homeView.php';
-
+            break;
+        case 'statistique':
+            $wikisReturnStatisteque = $wikiController->getWikiStatesteque();
             break;
         case 'autourWikissPage':
             // session_start();
@@ -78,15 +81,30 @@ if (isset($_GET['action'])){
             
             include "views\auteurAddWikis.php";
         break;
-        
         case 'insertwiki':
             $wikiController->add_wiki();
         break;
+        case 'getWikiToUpdate':
+            $wikiController->getWikiById();
+
+        break;
+        case 'updatewiki':
+            $wikiController->UpdateWikiOfautour();
+        break;
+        case 'logout':
+            $controllerFunctions->logout();
+        break;
+
+
+
+
         default:
             break;
     }
 } else {
     $wikisReturn = $wikiController->desplayTreeWikis();
+    $categoriesReturn = $categoryController->desplayTreeWikis();
+
 
     include 'views\homeView.php';
 

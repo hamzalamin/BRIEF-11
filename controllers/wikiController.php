@@ -14,6 +14,12 @@ class wikiController{
 
         // include 'views\homeView.php';
     }
+    public function getWikiStatesteque(){
+        $wikiDAO = new wikiDAO();
+        $wikisReturnStatisteque = $wikiDAO->getStatistique();
+        include 'views\satestiqueManagment.php';
+    }
+    
     public function desplayTreeWikis() {
         $wikiDAO = new wikiDAO();
         return $wikisReturn = $wikiDAO->lastTreeWikis();
@@ -41,6 +47,46 @@ class wikiController{
 
         include 'views/wikiManagment.php';
     }
+    public function getWikiById(){
+        $id = $_GET['id'];
+        $results = new wikiDAO();
+        $wikiReturn = $results->getWikisById($id);
+
+        $wikiId = $wikiReturn['id'];
+        $name = $wikiReturn['name'];
+        $contenu = $wikiReturn['contenu'];
+        $wiki_date = $wikiReturn['wiki_date'];
+
+        include 'views\UpdateWikiOfAutorer.php';
+
+
+
+
+    }
+
+    public function UpdateWikiOfautour(){
+        if(isset($_POST['wiki_id'])){
+
+            $id = $_POST['wiki_id'];
+            $name = $_POST['wiki_name'];
+            $contenu = $_POST['wiki_contenu']; 
+            $wiki_date = $_POST['wiki_date'];
+
+
+            $wiki = new Wiki($id, $name, $contenu, '','', $wiki_date, '');
+
+            $wikiDAO = new wikiDAO();
+            $wikisReturn = $wikiDAO->UpdateWikiOfAutore($wiki);
+            header('location: index.php?action=autourWikissPage');
+        }
+    
+    }
+    public function deletWiki(){
+        
+    }
+
+
+
     public function getWikisOfAuteur() {
         // $userDAO = new userDAO();
         // $user = $userDAO->getuserbyid($_SESSION['user_id']);
@@ -51,7 +97,7 @@ class wikiController{
         $wikiDAO = new wikiDAO();
         // $user = $_SESSION['user'];
         $userWikis = $wikiDAO->getUserWikis($userid);
-        print_r($userWikis);
+        // print_r($userWikis);
         return $userWikis;
         // include 'views\auteurAddWikis.php';
     }
@@ -84,7 +130,7 @@ class wikiController{
                 if (!empty($_POST['tags'])) {
                     $tags = $_POST['tags'];
                     $wikisDAO->addWikiWithTags($wiki, $tags);
-                    header('location:index.php?action=auther');
+                    header('location:index.php?action=autourWikissPage');
                     exit; 
                 } else {
                     echo 'No tags provided.';
@@ -96,8 +142,8 @@ class wikiController{
 
 
 
-
-
+      
+       
 
 
 

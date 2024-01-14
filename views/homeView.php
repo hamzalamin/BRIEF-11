@@ -83,6 +83,16 @@ a {
 .footer--light {
  background:#e7e8ed
 }
+
+
+.card {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
+
 .footer-big .footer-menu ul li a,.footer-big p,.footer-big ul li {
  color:#898b96
 }
@@ -156,14 +166,13 @@ a {
 </head>
 <body>
     
-</body>
-</html>
+
 
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-lg-9 text-center">
             <form action="#" class="form-search d-flex mb-3">
-                <input type="text" class="form-control px-4" placeholder="Your ZIP code or City. e.g. New York" />
+                <input type="search" class="form-control px-4" id="search" placeholder="You can search at WIKIS here" />
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
@@ -180,24 +189,44 @@ a {
             </div>
             <div class="row">
                 <?php foreach ($wikisReturn as $wiki) : ?>
-                    <div class="col-6">
-                        <div class="property-slider-wrap">
-                            <div class="property-slider">
-                                <div class="property-item">
-                                    <div class="property-content">
-                                        <div class="price mb-2"><span>Titel: <?= $wiki->getName(); ?></span></div>
-                                        <div>
-                                            <span class="d-block mb-2 text-black-50">Content: </br><?= $wiki->getContenu(); ?></span>
-                                            <span class="city d-block mb-3">Autor: <?= $wiki->getUserId()->getName(); ?></span>
+                    <div class="col-4 mb-4 wikis" id="<?= $wiki->getId(); ?>"><!-- Adjust the col-4 based on your layout preferences -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Title: <?= $wiki->getName(); ?></h5>
+                                <p class="card-text">Content: <br><?= $wiki->getContenu(); ?></p>
+                                <p class="card-text">Author: <?= $wiki->getUserId()->getName(); ?></p>
 
-                                            <div class="specs d-flex mb-4">
-                                                <!-- Additional specifications if needed -->
-                                            </div>
-
-                                            <span class="date">Date: <?= $wiki->getWikiDate(); ?></span>
-                                        </div>
-                                    </div>
+                                <div class="specs"><!-- Additional specifications if needed -->
                                 </div>
+
+                                <p class="card-text"><small class="text-muted">Date: <?= $wiki->getWikiDate(); ?></small></p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="container mb-5">
+    <div class="section">
+        <div class="container">
+            <div class="row mb-5 align-items-center">
+                <div class="col-lg-6">
+                    <h1>Last 3 Categories</h1>
+                </div>
+            </div>
+            <div class="row">
+                <?php foreach ($categoriesReturn as $category) : ?>
+                    <div class="col-4 mb-4"><!-- Adjust the col-4 based on your layout preferences -->
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Title: <?= $category->getCategoryName(); ?></h5>
+                                <p class="card-text">Date: <?= $category->getCategoryDate(); ?></p>
                             </div>
                         </div>
                     </div>
@@ -355,3 +384,48 @@ a {
     </div>
   </div>
 </footer>
+
+<script>
+    
+    let search = document.getElementById('search');
+
+    let wikis = document.querySelectorAll('.wikis');
+
+    search.addEventListener('input', function() {
+        let request = new XMLHttpRequest();
+        request.open('GET', 'ajaxSearch.php?search=' + search.value, true);
+        request.onreadystatechange = function() {
+            if(this.readyState == 4 && request.status == 200) {
+              //console.log("response test:",request.responseText);
+                let wikis_id = JSON.parse(this.responseText);
+                //console.log(wikis_id);
+                if(this.responseText.trim() !== '') {
+                    
+                    wikis.forEach(function(wiki){
+                        console.log(wiki, wikis_id);
+                        if(wikis_id.includes(Number(wiki.id))) {
+                            console.log("exist");
+                            wiki.style.display = 'block';
+                        } else {
+                            console.log("doesn't exist");
+                            wiki.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        }
+        request.send();
+    });
+    
+
+
+    console.log(44);
+
+
+
+
+
+</script>
+
+</body>
+</html> 

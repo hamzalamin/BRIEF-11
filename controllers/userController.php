@@ -58,6 +58,13 @@ class UserController {
  
 }
 
+public function logout() {
+    session_start();
+    $_SESSION = array();
+    session_destroy();
+    header("Location: index.php?action=homeView.php");
+    exit();
+}
     public function login_form() {
          include "views\login.php";
 

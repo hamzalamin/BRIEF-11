@@ -1,6 +1,6 @@
 <?php
 include 'head.php';
-include 'views\logOutAutour.php';
+include 'views\navBar.php';
 ?>
 
 <button class="btn btn-primary mx-5 mt-3 mb-5" data-toggle="modal" data-target="#addFormModal">Add wiki</button>
@@ -89,6 +89,8 @@ include 'views\logOutAutour.php';
                     <p class="card-text"><?= $wiki->getContenu(); ?></p>
                     <p class="card-text">Author: <?= $wiki->getUserId()->getName(); ?></p>
                     <p class="card-text">Date: <?= $wiki->getWikiDate(); ?></p>
+                    <a href="index.php?action=getWikiToUpdate&id=<?= $wiki->getId(); ?>" class="btn btn-success">Edit</a>
+
                 </div>
             </div>
         </div>

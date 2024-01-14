@@ -59,6 +59,25 @@ class categoryDAO{
         $stmt->execute();
     }
     
+
+
+
+    public function lastTreeCategorys()
+    {
+        $query = "SELECT * FROM category WHERE category_date = CURDATE() ORDER BY category_date DESC LIMIT 3";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        $categoryData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        $coategors = array();
+        foreach ($categoryData as $category) {
+            $result = new category($category['category_id'], $category['category_name'], $category['category_date']);
+            $coategors[] = $result;
+        }
+        return $coategors;
+    }
 }
 // $categoryController = new categoryDAO();
 // $res = $categoryController->getAllCategorys();
