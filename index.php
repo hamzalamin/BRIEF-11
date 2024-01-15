@@ -94,6 +94,17 @@ if (isset($_GET['action'])){
         case 'logout':
             $controllerFunctions->logout();
         break;
+        case 'deleteWiki':
+            $wikiController->delet_wiki();
+        break;
+        case 'detaillswikis':
+            $wikis = $wikiController->getWikiForsinglePage();
+            // $categoryController->desplayAllCategorys();
+            // $controllerFunctions->
+        break;
+        case 'deleteTag':
+            $tagController->delete_tag();
+        break;
 
 
 

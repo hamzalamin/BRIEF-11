@@ -40,6 +40,7 @@ class categoryDAO{
         $stmt = $this->db->query($query);
         $stmt->execute();
         $categoryData = $stmt->fetch(PDO::FETCH_ASSOC);
+        
         return $categoryData;
     }
 
@@ -64,7 +65,7 @@ class categoryDAO{
 
     public function lastTreeCategorys()
     {
-        $query = "SELECT * FROM category WHERE category_date = CURDATE() ORDER BY category_date DESC LIMIT 3";
+        $query = "SELECT * FROM category WHERE category_date <= CURDATE() ORDER BY category_date DESC LIMIT 3";
 
         $stmt = $this->db->prepare($query);
         $stmt->execute();

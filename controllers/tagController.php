@@ -57,5 +57,12 @@ class tagController {
                 header('location: index.php?action=tagManagment');
             }
         }
+        public function delete_tag() {
+            $tag_id = $_GET['tag_id'];
+            $tagDAO = new tagDAO();
+            $tagDAO->delete_tag($tag_id);
         
+            header('location: index.php?action=tagManagment');
+            exit;
+        }
 }

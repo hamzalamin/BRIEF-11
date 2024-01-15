@@ -47,6 +47,22 @@ class wikiController{
 
         include 'views/wikiManagment.php';
     }
+    
+        public function getWikiForsinglePage(){
+            $id = $_GET['id'];
+            $results = new wikiDAO();
+            $catgDAO = new categoryDAO();
+            $userDAO = new userDAO();
+            $wikiReturn = $results->getWikisById($id);
+
+            $wikiId = $wikiReturn['id'];
+            $name = $wikiReturn['name'];
+            $contenu = $wikiReturn['contenu'];
+            $category = $catgDAO->getCategoryById($wikiReturn['category_id']);
+            $user = $userDAO->getuserbyid($wikiReturn['user_id']);
+            $wiki_date = $wikiReturn['wiki_date'];
+            include 'views\detaills.php';
+        }
     public function getWikiById(){
         $id = $_GET['id'];
         $results = new wikiDAO();
@@ -58,10 +74,6 @@ class wikiController{
         $wiki_date = $wikiReturn['wiki_date'];
 
         include 'views\UpdateWikiOfAutorer.php';
-
-
-
-
     }
 
     public function UpdateWikiOfautour(){
@@ -81,9 +93,7 @@ class wikiController{
         }
     
     }
-    public function deletWiki(){
-        
-    }
+   
 
 
 
@@ -140,7 +150,14 @@ class wikiController{
             }
        }
 
+       public  function delet_wiki(){
+        $id = $_GET['id'];
+        $wikisDAO = new wikiDAO();
+        $wikisDAO->delet_wiki($id);
 
+       header('location: index.php?action=autourWikissPage');
+
+    }
 
       
        

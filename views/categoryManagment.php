@@ -60,7 +60,7 @@ include 'views\navBarOfAdmin.php';
                             <h5 class="card-title"><?= $Category->getCategoryName(); ?></h5>
                             <p class="card-text">ID: <?= $Category->getCategoryId(); ?></p>
                             <p class="card-text">Date: <?= $Category->getCategoryDate(); ?></p>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="#" class="btn btn-danger" onclick="confirmDelete()">Delete</a>
                             <a href="index.php?action=getCategoryToUpdate&id=<?= $Category->getCategoryId(); ?>" class="btn btn-success">Edit</a>
                         </div>
                     </div>
@@ -70,7 +70,15 @@ include 'views\navBarOfAdmin.php';
         </div>
     </div>
 </div>
-
+<script>
+function confirmDelete() {
+    var confirmation = confirm("You cant delet this category!!");
+    if (confirmation) {
+    } else {
+        alert("Deletion canceled!");
+    }
+}
+</script>
 <!-- Bootstrap JS and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

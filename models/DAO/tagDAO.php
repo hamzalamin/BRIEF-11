@@ -56,4 +56,18 @@ class tagDAO{
     
         $stmt->execute();
     }
+
+   
+public function delete_tag($tag_id) {
+    $query = "DELETE FROM tag WHERE tag_id = :tag_id";
+
+    
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':tag_id', $tag_id);
+        $stmt->execute();
+
+        // Redirect to success page
+        // header('location: index.php?action=tagManagment');
+}
+
 }    

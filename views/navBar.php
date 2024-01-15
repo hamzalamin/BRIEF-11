@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="main-navbar">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="index.php?action=autourWikissPage">Home <span class="sr-only"></span></a>
+                <a class="nav-link" href="index.php?action=homeView.php">Home <span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?action=logout">Log Out <span class="sr-only"></span></a>
@@ -35,7 +35,6 @@
                     }
                 }
             ?>
-            <!-- Add more navigation items as needed -->
         </ul>
     </div>
 </nav>

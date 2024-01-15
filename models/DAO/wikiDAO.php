@@ -61,6 +61,8 @@ class wikiDAO
         $wikisData = $stmt->fetch(PDO::FETCH_ASSOC);
         return $wikisData;
     }
+
+    
     public function UpdateWikiOfAutore($wiki)
     {
         $query = "UPDATE wiki SET name = :name , contenu = :contenu , wiki_date = :wiki_date  WHERE id = :id";
@@ -202,16 +204,31 @@ class wikiDAO
         }
         return $wikis;
     }
-    public function deleteWiki($wiki){
-        $query = "DELETE FROM wiki  WHERE id = :id";
-        $stmt = $this->db->prepare($query);
-
-        $id = $wiki->getId();
-
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
+    public function delet_wiki($id){
+        $query = "DELETE FROM wiki WHERE id = :id";
+    
+        try {
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+    
+            // Redirect to success page
+            header('location: index.php?action=autourWikissPage');
+            exit;
+        } catch (PDOException $e) {
+            // Check if it's a foreign key constraint violation
+            if ($e->getCode() == '23000') {
+                // Redirect to the error page with a user-friendly message
+                header('location: index.php?action=autourWikissPage&error=Cannot delete wiki because it is associated with other records.');
+                exit;
+            } else {
+                // Handle other PDO exceptions (e.g., log, display generic error message)
+                header('location: index.php?action=autourWikissPage&error=An error occurred while deleting wiki.');
+                exit;
+            }
+        }
     }
-
+    
     public function getWikisForTags($tag)
     {
         $sql = "SELECT wiki.* FROM wiki
@@ -224,11 +241,26 @@ class wikiDAO
         $wikisArray = [];
         foreach ($wikis as  $wikiData) {
             $uderdao = new UserDAO();
-            $wikis = new Wiki($wikiData['id'], $wikiData['name'], $wikiData['contenu'], $uderdao->getuserbyid($wikiData['user_id']), $wikiData['category_id'], $wikiData['wiki_date'], $wikiData['is_hide']);
-            $wikisArray[] = $wikis;
+            $wiki = new Wiki($wikiData['id'], $wikiData['name'], $wikiData['contenu'], $uderdao->getuserbyid($wikiData['user_id']), $wikiData['category_id'], $wikiData['wiki_date'], $wikiData['is_hide']);
+            $wikisArray[] = $wiki;
         }
 
         return $wikisArray;
+    }
+
+    public function getWikisForCategory($category_id) {
+        $sql = "SELECT * FROM wiki WHERE category_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$category_id]);
+        $wikis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $wikisArray = [];
+        foreach ($wikis as  $wikiData) {
+            $uderdao = new UserDAO();
+            $wiki = new Wiki($wikiData['id'], $wikiData['name'], $wikiData['contenu'], $uderdao->getuserbyid($wikiData['user_id']), $wikiData['category_id'], $wikiData['wiki_date'], $wikiData['is_hide']);
+            $wikisArray[] = $wiki;
+        }
+        return $wikisArray;
+
     }
 }
 // session_start();

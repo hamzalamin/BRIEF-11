@@ -1,6 +1,11 @@
 <?php
 include 'head.php';
 include 'views\navBar.php';
+if (isset($_GET['error'])) {
+    $errorMessage = urldecode($_GET['error']); 
+    echo '<div class="alert alert-danger mt-3" role="alert">' . $errorMessage . '</div>';
+}
+
 ?>
 
 <button class="btn btn-primary mx-5 mt-3 mb-5" data-toggle="modal" data-target="#addFormModal">Add wiki</button>
@@ -89,6 +94,7 @@ include 'views\navBar.php';
                     <p class="card-text"><?= $wiki->getContenu(); ?></p>
                     <p class="card-text">Author: <?= $wiki->getUserId()->getName(); ?></p>
                     <p class="card-text">Date: <?= $wiki->getWikiDate(); ?></p>
+                    <a href="index.php?action=deleteWiki&id=<?= $wiki->getId(); ?>"  class="btn btn-danger">Delete</a>
                     <a href="index.php?action=getWikiToUpdate&id=<?= $wiki->getId(); ?>" class="btn btn-success">Edit</a>
 
                 </div>

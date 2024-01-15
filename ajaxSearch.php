@@ -40,7 +40,10 @@ if (isset($_GET['search'])) {
 
     foreach($catgs as $catg) {
         if (stristr($catg->getCategoryName(), $search)) {
-            $result[] = $catg->getCategoryId();    
+            $wikis_for_catg = $wikiDAO->getWikisForCategory($catg->getCategoryId());
+            foreach($wikis_for_catg as $wiki) {
+                $result[] = $wiki->getId();
+            }
         }
     }
     

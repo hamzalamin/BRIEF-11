@@ -1,6 +1,10 @@
 <?php
 include 'head.php';
 include 'views\navBarOfAdmin.php';
+if (isset($_GET['error'])) {
+    $errorMessage = urldecode($_GET['error']);
+    echo '<script>alert("' . $errorMessage . '");</script>';
+}
 ?>
 <style>
     .card {
@@ -60,7 +64,7 @@ include 'views\navBarOfAdmin.php';
                         <h5 class="card-title"><?= $tag->getTagName(); ?></h5>
                         <p class="card-text">ID: <?= $tag->getTagId(); ?></p>
                         <p class="card-text">Date: <?= $tag->getTagDate(); ?></p>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="index.php?action=deleteTag&tag_id=<?= $tag->getTagId(); ?>" class="btn btn-danger">Delete</a>
                         <a href="index.php?action=gettagToUpdate&id=<?= $tag->getTagId(); ?>" class="btn btn-success">Edit</a>
                     </div>
                 </div>
