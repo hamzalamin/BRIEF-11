@@ -38,22 +38,12 @@ include 'views\navBar.php';
         <div class="col-md-4 mb-4">
             <div class="card">
                 <div class="card-body">
-                    <?php if (isset($wiki['name'])) : ?>
-                        <h5 class="card-title"><?= $wiki['name']; ?></h5>
-                    <?php endif; ?>
-                    <?php if (isset($wiki['username'])) : ?>
-                        <p class="card-text">Author: <?= $wiki['username']; ?></p>
-                    <?php endif; ?>
-                    <?php if (isset($wiki['wiki_date'])) : ?>
-                        <p class="card-text">Date: <?= $wiki['wiki_date']; ?></p>
-                    <?php endif; ?>
-                    <?php if (isset($wiki['content_count'])) : ?>
-                        <p class="card-text">Number of Wikis: <?= $wiki['content_count']; ?></p>
-                    <?php endif; ?>
-                    <!-- You can add a link to the edit page if needed -->
-                    <!-- <a href="index.php?action=getWikiToUpdate&id=<?= $wiki['id']; ?>" class="btn btn-success">Edit</a> -->
+                    <h5 class="card-title"><?= $wiki['name'] ?? ''; ?></h5>
+                    <p class="card-text">Author: <?= $wiki['username'] ?? ''; ?></p>
+                    <p class="card-text">Number of Wikis: <?= $wiki['content_count'] ?? ''; ?></p>
                 </div>
             </div>
         </div>
     <?php endforeach; ?>
 </div>
+

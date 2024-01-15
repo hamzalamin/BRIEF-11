@@ -1,10 +1,6 @@
 <?php
 include 'head.php';
 include 'views\navBarOfAdmin.php';
-if (isset($_GET['error'])) {
-    $errorMessage = urldecode($_GET['error']);
-    echo '<script>alert("' . $errorMessage . '");</script>';
-}
 ?>
 <style>
     .card {

@@ -321,11 +321,8 @@ include 'views\navOflog.php';
                   </li>
                 </ul>
               </div>
-              <!-- end /.footer-menu -->
             </div>
-            <!-- Ends: .footer-widget -->
           </div>
-          <!-- end /.col-md-3 -->
 
           <div class="col-md-3 col-sm-4">
             <div class="footer-widget">
@@ -355,11 +352,8 @@ include 'views\navOflog.php';
                   </li>
                 </ul>
               </div>
-              <!-- end /.footer-menu -->
             </div>
-            <!-- Ends: .footer-widget -->
           </div>
-          <!-- end /.col-lg-3 -->
 
           <div class="col-md-3 col-sm-4">
             <div class="footer-widget">
@@ -389,18 +383,14 @@ include 'views\navOflog.php';
                   </li>
                 </ul>
               </div>
-              <!-- end /.footer-menu -->
+            
             </div>
-            <!-- Ends: .footer-widget -->
+            
           </div>
-          <!-- Ends: .col-lg-3 -->
 
         </div>
-        <!-- end /.row -->
       </div>
-      <!-- end /.container -->
     </div>
-    <!-- end /.footer-big -->
 
     <div class="mini-footer">
       <div class="container">
@@ -442,7 +432,8 @@ include 'views\navOflog.php';
                 wiki.style.display = 'none';
               }
             });
-          } else {
+          } 
+          else {
             wikis.forEach(function(wiki) {
                 wiki.style.display = 'block';
             });

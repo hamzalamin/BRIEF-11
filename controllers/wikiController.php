@@ -30,6 +30,7 @@ class wikiController{
     public function HideWiki(){
 
         $id = $_GET['id'];
+        //utilisee bach tjib lina des variables externes (par exemple,men formulaires, d'URL)
         $name = filter_input(INPUT_GET, 'name', FILTER_SANITIZE_STRING);
         $contenu = filter_input(INPUT_GET, 'contenu', FILTER_SANITIZE_STRING);
         $user_id = filter_input(INPUT_GET, 'user_id', FILTER_VALIDATE_INT);

@@ -62,7 +62,7 @@ class wikiDAO
         return $wikisData;
     }
 
-    
+
     public function UpdateWikiOfAutore($wiki)
     {
         $query = "UPDATE wiki SET name = :name , contenu = :contenu , wiki_date = :wiki_date  WHERE id = :id";
@@ -127,10 +127,7 @@ class wikiDAO
         $query = "SELECT * FROM wiki WHERE user_id = :user_id";
         $stmt = $this->db->prepare($query);
 
-        // Store the user ID in a variable
-        // $userId = $user->getUserId();
-
-        // Bind the user ID variable by reference
+       
         $stmt->bindParam(':user_id', $userid, PDO::PARAM_INT);
         $stmt->execute();
         $wikisArray = array();
@@ -207,27 +204,14 @@ class wikiDAO
     public function delet_wiki($id){
         $query = "DELETE FROM wiki WHERE id = :id";
     
-        try {
+        
             $stmt = $this->db->prepare($query);
             $stmt->bindParam(':id', $id);
             $stmt->execute();
-    
-            // Redirect to success page
-            header('location: index.php?action=autourWikissPage');
-            exit;
-        } catch (PDOException $e) {
-            // Check if it's a foreign key constraint violation
-            if ($e->getCode() == '23000') {
-                // Redirect to the error page with a user-friendly message
-                header('location: index.php?action=autourWikissPage&error=Cannot delete wiki because it is associated with other records.');
-                exit;
-            } else {
-                // Handle other PDO exceptions (e.g., log, display generic error message)
-                header('location: index.php?action=autourWikissPage&error=An error occurred while deleting wiki.');
-                exit;
-            }
+                header('location: index.php?action=autourWikissPage');
+        
         }
-    }
+    // }
     
     public function getWikisForTags($tag)
     {
