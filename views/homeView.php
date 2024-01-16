@@ -445,7 +445,7 @@ include 'views\navOflog.php';
 
 
 
-    console.log(1);
+    // console.log(1);
   </script>
 
 </body>

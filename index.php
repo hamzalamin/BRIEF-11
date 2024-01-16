@@ -106,17 +106,12 @@ if (isset($_GET['action'])){
             $tagController->delete_tag();
         break;
 
-
-
-
         default:
             break;
     }
 } else {
     $wikisReturn = $wikiController->desplayTreeWikis();
     $categoriesReturn = $categoryController->desplayTreeWikis();
-
-
     include 'views\homeView.php';
 
 }

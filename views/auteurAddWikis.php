@@ -1,10 +1,10 @@
 <?php
 include 'head.php';
 include 'views\navBar.php';
-if (isset($_GET['error'])) {
-    $errorMessage = urldecode($_GET['error']); 
-    echo '<div class="alert alert-danger mt-3" role="alert">' . $errorMessage . '</div>';
-}
+// if (isset($_GET['error'])) {
+//     $errorMessage = urldecode($_GET['error']); 
+//     echo '<div class="alert alert-danger mt-3" role="alert">' . $errorMessage . '</div>';
+// }
 
 ?>
 
